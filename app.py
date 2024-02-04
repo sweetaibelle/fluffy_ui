@@ -83,11 +83,5 @@ with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
         
     btn.click(generate, inputs = [url, model, pos, neg, dimensions, direction, batch_size, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale], outputs = [generated_image])
 
-# dim_1 = [1024, 1024]
-# dim_2 = [1152, 896]
-# dim_3 = [1216, 832]
-# dim_4 = [1344, 768]
-# dim_5 = [1536, 640]
-
 if __name__ == "__main__":
     demo.launch() 
