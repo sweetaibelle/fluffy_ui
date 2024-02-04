@@ -1,4 +1,4 @@
-## Comfy Gradio UI
+## Fluffy UI
 
 This is just a gradio interface that controls ComfyUI, and is a bit easier to deal with than nodes, though more limited.
 
