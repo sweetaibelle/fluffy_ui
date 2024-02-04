@@ -5,17 +5,17 @@ This is just a gradio interface that controls ComfyUI, and is a bit easier to de
 It's pretty much what you see is what you get, and it's a person project, so if you are using it, I'm just going to assume you know what you are doing. :P
 
 You need to have already installed ComfyUI. For this to work, in the same folder as this program, do something like this (I'm assuming Linux):
-{
+```
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-}
+```
 
 To run it:
-{
+```
 source venv/bin/activate
 python app.py
-}
+```
 
 Then go to http://127.0.0.1:7860/?__theme=dark
 
