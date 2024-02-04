@@ -1,0 +1,22 @@
+{
+    "main": {
+        "url": "127.0.0.1:8188",
+        "model": "XL/ponyDiffusionV6XL_v6.safetensors",
+        "pos": "source_9,  human Sunset Shimmer petting unicorn Sweetie Belle in the forest, source_pony, rating_safe, source_anime, cute, adorable, full body, duo, pair, detailed",
+        "neg": "watermark, signature",
+        "dimensions": "1216x832",
+        "direction": "Landscape",
+        "batch": 1,
+        "seed": 1,
+        "steps": 50,
+        "cfg": 7,
+        "sampler_name": "dpmpp_3m_sde_gpu",
+        "scheduler": "karras",
+        "clip": -2,
+        "b1": 1.3,
+        "b2": 1.4,
+        "s1": 0.9,
+        "s2": 0.2,
+        "rescale": 0.7
+    }
+}
