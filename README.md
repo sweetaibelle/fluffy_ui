@@ -27,4 +27,4 @@ Once you have it open, put the correct address in the Server URL field. That's p
 
 Then fiddle with the settings, hit generate, and wait for pictures!
 
-It doesn't actually save any of the settings yet or anything. Maybe later.
+![Picture of ui](fluffy_ui.png)
