@@ -18,7 +18,7 @@ def randomize_seed():
     print(seed.value)
     return seed.value
 
-def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale):
+def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale, progress=gr.Progress()):
     width, height = dimensions.split("x")
 
     if direction == "Portrait":
@@ -57,7 +57,9 @@ def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cf
     with open('config.json', 'w', encoding='utf-8') as f:
         json.dump(defaults, f, ensure_ascii=False, indent=4)
 
-    images = comfy.get_images()
+    progress(0, "Getting Images")
+    images = comfy.get_images(progress)
+    progress(50, "Collecting images")
     images_pil = []
 
     for i, image_data in enumerate(images["7"]):
