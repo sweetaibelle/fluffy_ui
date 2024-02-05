@@ -49,6 +49,8 @@ def get_images():
         out = ws.recv()
         if isinstance(out, str):
             message = json.loads(out)
+            # print(message)
+            # type -> progress will have 'value' and 'max' in the data, for a progress bar.
             if message['type'] == 'executing':
                 data = message['data']
                 if data['node'] is None and data['prompt_id'] == prompt_id:
