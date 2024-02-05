@@ -5,6 +5,9 @@ from urllib import request, parse
 import workflow
 
 server_url = ""
+busy = False
+progress_value = 0
+progress_max = 0
 
 # Generate a random client id
 client_id = str(uuid.uuid4())
@@ -40,10 +43,11 @@ def get_history(prompt_id):
     with request.urlopen("http://{}/history/{}".format(server_url, prompt_id)) as response:
         return json.loads(response.read())
     
-def get_images():
+def get_images(fun):
     print ("Sending prompt to ComfyUI.")
     prompt_id = queue()['prompt_id']
     output_images = {}
+    busy = True
 
     while True:
         out = ws.recv()
@@ -51,7 +55,13 @@ def get_images():
             message = json.loads(out)
             # print(message)
             # type -> progress will have 'value' and 'max' in the data, for a progress bar.
-            if message['type'] == 'executing':
+            if message['type'] == 'progress':
+                progress_value = message['data']['value']
+                progress_max = message['data']['max']
+                #print(f'{progress_value}/{progress_max}')
+                fun(progress_value/progress_max, "Generating...")
+
+            elif message['type'] == 'executing':
                 data = message['data']
                 if data['node'] is None and data['prompt_id'] == prompt_id:
                     break #Execution is done
@@ -70,6 +80,7 @@ def get_images():
                     images_output.append(image_data)
             output_images[node_id] = images_output
 
+    busy = False
     return output_images
 
 def save_images(images, prefix):
@@ -114,5 +125,3 @@ def set_clip(clip):
 
 def set_filename_prefix(prefix):
     comfy_workflow["17"]["inputs"]["filename_prefix"] = prefix
-
-
