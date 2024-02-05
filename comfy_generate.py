@@ -2,6 +2,9 @@ import websocket #NOTE: websocket-client (https://github.com/websocket-client/we
 import uuid
 import json
 from urllib import request, parse
+from PIL import Image
+import io
+
 import workflow
 
 server_url = ""
@@ -88,6 +91,15 @@ def save_images(images, prefix):
     for i, image_data in enumerate(images["7"]):
         with open(f"{prefix}_{i}.png", "wb") as f:
             f.write(image_data)
+
+def images_to_pil(images):
+    images_pil = []
+
+    for i, image_data in enumerate(images["7"]):
+        image = Image.open(io.BytesIO(image_data))
+        images_pil.append(image)
+    
+    return images_pil
 
 # Functions to edit the workflow
             
