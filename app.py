@@ -66,13 +66,7 @@ def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cf
     
     return images_pil
 
-with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
-    gr.Markdown("""
-                ## Fluffy UI
-                This is a simpler UI for generating images using the Comfy API. You'll need to have the Comfy API running, and put the server name/port in the "Server URL" field. "127.0.0.1:8188" is default if its running on your local computer.
-                
-                The model field should have the exact name of the model you want to use, including any subfolders. The text below the output can be customized by editing notes.md.
-                """)
+with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as main_tab:
     with gr.Row(equal_height = True):
         with gr.Column():
             with gr.Row():
@@ -115,6 +109,15 @@ with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
             gr.Markdown(notes)
         
     btn.click(generate, inputs = [url, model, pos, neg, dimensions, direction, batch_size, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale], outputs = [generated_image])
+
+with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
+    gr.Markdown("""
+                ## Fluffy UI
+                This is a simpler UI for generating images using the Comfy API. You'll need to have the Comfy API running, and put the server name/port in the "Server URL" field. "127.0.0.1:8188" is default if its running on your local computer.
+                
+                The model field should have the exact name of the model you want to use, including any subfolders. The text below the output on the main tab can be customized by editing notes.md.
+                """)
+    gr.TabbedInterface([main_tab], ["Main"])
 
 if __name__ == "__main__":
     demo.launch() 
