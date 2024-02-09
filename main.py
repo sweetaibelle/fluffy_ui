@@ -40,7 +40,7 @@ def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cf
     progress(50, "Collecting images")
     return comfy.images_to_pil(images)
 
-with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as tab:
+with gr.Blocks() as tab:
     with gr.Row(equal_height = True):
         with gr.Column():
             with gr.Row():

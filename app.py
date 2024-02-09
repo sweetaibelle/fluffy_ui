@@ -1,5 +1,6 @@
 import gradio as gr
 import main
+import notes
 
 with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
     gr.Markdown("""
@@ -8,7 +9,7 @@ with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
                 
                 The model field should have the exact name of the model you want to use, including any subfolders. The text below the output on the main tab can be customized by editing notes.md.
                 """)
-    gr.TabbedInterface([main.tab], ["Main"])
+    gr.TabbedInterface([main.tab, notes.tab], ["Main", "Notes"])
 
 if __name__ == "__main__":
     demo.launch() 
