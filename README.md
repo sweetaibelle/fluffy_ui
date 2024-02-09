@@ -22,7 +22,7 @@ python app.py
 
 Then go to http://127.0.0.1:7860/?__theme=dark
 
-Technically, if you already installed the two packages listed in requirement.txt, you could probably run it outside of a venv.
+Technically, if you already installed the two packages listed in requirements.txt, you could probably run it outside of a venv.
 
 Once you have it open, put the correct address in the Server URL field. That's probably the one already there if you are running it locally. Model is what model in ComfyUI's model folder to load, including subfolder. I'm just assuming you have an XL folder in there with the pony v6 XL model in there.
 
