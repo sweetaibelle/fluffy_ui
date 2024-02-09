@@ -14,8 +14,8 @@ workflow = """
   "3": {
     "inputs": {
       "seed": 0,
-      "steps": 1e+23,
-      "cfg": 50,
+      "steps": 30,
+      "cfg": 7,
       "sampler_name": "dpmpp_3m_sde_gpu",
       "scheduler": "karras",
       "denoise": 1,
@@ -110,7 +110,7 @@ workflow = """
     "inputs": {
       "multiplier": 0.7,
       "model": [
-        "2",
+        "22",
         0
       ]
     },
@@ -126,7 +126,7 @@ workflow = """
       "s1": 0.9,
       "s2": 0.2,
       "model": [
-        "21",
+        "2",
         0
       ]
     },
