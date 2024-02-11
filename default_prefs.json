@@ -1,6 +1,8 @@
 {
+    "settings": {
+        "url": "127.0.0.1:8188"
+    },
     "main": {
-        "url": "127.0.0.1:8188",
         "model": "XL/ponyDiffusionV6XL_v6.safetensors",
         "pos": "score_9, score_8_up, score_7_up, score_6_up, score_5_up, score_4_up, source_furry, source pony, human Sunset Shimmer petting unicorn Sweetie Belle in the forest, rating_safe, cute, adorable, full body, duo, pair, detailed background, volumetric lighting",
         "neg": "watermark, signature",

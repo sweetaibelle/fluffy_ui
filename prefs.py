@@ -6,6 +6,7 @@ config_name = "config.json"
 
 def init():
     global config
+
     if os.path.exists(config_name):
         config = json.load(open(config_name))
     else:
@@ -13,8 +14,12 @@ def init():
 
 def set_config(url, model, pos, neg, dimensions, direction, batch, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale):
     global config
+
     config["main"] = {}
-    config["main"]["url"] = url
+    config["settings"] = {}
+
+    config["settings"]["url"] = url
+    
     config["main"]["model"] = model
     config["main"]["pos"] = pos
     config["main"]["neg"] = neg
@@ -32,5 +37,16 @@ def set_config(url, model, pos, neg, dimensions, direction, batch, seed, steps, 
     config["main"]["s1"] = s1
     config["main"]["s2"] = s2
     config["main"]["rescale"] = rescale
+
     with open(config_name, 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
+
+def generation_info():
+    info = """
+**Positive:** {pos}  
+**Negative:** {neg}
+
+{dimensions} {direction} **Seed:** {seed} **CFG:** {cfg} {sampler_name} {scheduler} **Clip:** {clip}  
+**FreeU_v2:** [{b1},{b2},{s1},{s2}] **Rescale CFG:** {rescale}
+    """.format(**config["main"])
+    return info

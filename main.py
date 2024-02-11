@@ -33,18 +33,17 @@ def generate(url, model, pos, neg, dimensions, direction, batch, seed, steps, cf
     comfy.set_clip(clip)
 
     prefs.set_config(url, model, pos, neg, dimensions, direction, batch, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale)
-
-    progress(0, "Getting Images")
+    progress(0, "Loading Checkpoint and Getting Images")
     images = comfy.get_images(progress)
 
     progress(50, "Collecting images")
-    return comfy.images_to_pil(images)
+    return [comfy.images_to_pil(images), prefs.generation_info()]
 
 with gr.Blocks() as tab:
-    with gr.Row(equal_height = True):
+    with gr.Row(equal_height = False):
         with gr.Column():
             with gr.Row():
-                url = gr.Textbox(label="Server URL", value = prefs.config["main"]["url"])
+                url = gr.Textbox(label="Server URL", value = prefs.config["settings"]["url"])
                 model = gr.Textbox(label="Model", value = prefs.config["main"]["model"])
             pos = gr.Textbox(label="Positive Prompt", value = prefs.config["main"]["pos"])
             neg = gr.Textbox(label="Negative Prompt", value = prefs.config["main"]["neg"])
@@ -80,6 +79,11 @@ with gr.Blocks() as tab:
 
         with gr.Column():
             generated_image = gr.Gallery(label="Generated Images")
+            #with gr.Row():
+            #    save_path = gr.Textbox(label = "Path", scale = 4)
+            #    save_prefix = gr.Textbox(label = "Prefix", scale = 2)
+            #    save_btn = gr.Button(value = "Save", scale = 1)
+            info = gr.Markdown(label = "Info", value = "")
             gr.Markdown(notes)
         
-    btn.click(generate, inputs = [url, model, pos, neg, dimensions, direction, batch_size, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale], outputs = [generated_image])
+    btn.click(generate, inputs = [url, model, pos, neg, dimensions, direction, batch_size, seed, steps, cfg, sampler_name, scheduler, clip, b1, b2, s1, s2, rescale], outputs = [generated_image, info])

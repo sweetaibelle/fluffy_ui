@@ -2,6 +2,7 @@ import gradio as gr
 import main
 import notes
 
+# css="theme.css"
 with gr.Blocks(title = "Fluffy UI", theme = "gradio/glass") as demo:
     gr.Markdown("""
                 ## Fluffy UI
